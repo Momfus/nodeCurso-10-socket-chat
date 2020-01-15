@@ -49,19 +49,33 @@ class Usuarios  {
 
         let personaBorrada = this.getPersona(id); // Para luego manejar su referencia en algun mensaje
 
+        this.borrarItemDesdeArr( this.personas, personaBorrada );
+        /*
+        // Nota: normalmente uno lo haria así, pero al recargar la página no alcanza a llamarse y realizarse el filter (en casos reales tendriamso un login lo que haria que tarde en mandarse la señal y funcionar correctamente)
+        //por esta razón usamos el método mas "a mano" de arriba
+
         this.personas.filter( per => {
 
             return per.id != id;
 
         }); // Solo quedan en el arreglo los que no tengan el id enviado
+        */
 
         return personaBorrada; // Supone que siempre habrá una persona válida, y no un undefined (ahi habria que manejar el error)
 
     }
 
-
+    borrarItemDesdeArr ( arreglo, item ) {
+        var i = arreglo.indexOf( item );
+     
+        if ( i !== -1 ) {
+            arreglo.splice( i, 1 );
+        }
+    }
 
 }
+
+
 
 
 module.exports = {
