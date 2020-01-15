@@ -19,7 +19,7 @@ socket.on('connect', function() {
 
     socket.emit('entrarChat', usuario, function(resp) {
         // console.log('Usuarios conectados', resp);
-        renderizarUsuarios( resp ); // Para señalar cuando renderizar el html
+        renderizarUsuarios( resp, false ); // Para señalar cuando renderizar el html
     });
 
 });
@@ -36,6 +36,7 @@ socket.on('disconnect', function() {
 socket.on('crearMensaje', function(mensaje) {
     console.log('Servidor:', mensaje);
     renderizarMensajes(mensaje);
+    scrollBottom();
 });
 
 // Escuchar cambios de usuarios
